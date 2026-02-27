@@ -1,7 +1,7 @@
 [project]
-name = "map-scraper"
+name = "climbDptMap"
 version = "0.1.0"
-description = "Add your description here"
+description = "Interactive map of climbing gyms and DPT programs across the US"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [

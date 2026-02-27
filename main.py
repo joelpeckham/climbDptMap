@@ -10,7 +10,7 @@ GYMS_FILE = os.path.join(DATA_DIR, "climbing_gyms.json")
 OSM_GYMS_FILE = os.path.join(DATA_DIR, "osm_gyms_raw.json")
 DPT_FILE = os.path.join(DATA_DIR, "dpt_programs.json")
 COMBINED_FILE = os.path.join(DATA_DIR, "combined.json")
-MAP_FILE = os.path.join(os.path.dirname(__file__), "map.html")
+MAP_FILE = os.path.join(os.path.dirname(__file__), "index.html")
 
 _DEDUP_STOP_WORDS = {"climbing", "gym", "center", "centre", "fitness", "rock", "the", "of", "and", "wall", "bouldering"}
 
@@ -115,7 +115,7 @@ def main() -> None:
     )
     save_json(COMBINED_FILE, combined)
 
-    print("Generating map.html...")
+    print("Generating index.html...")
     data_json = json.dumps(combined, ensure_ascii=False)
     html = MAP_TEMPLATE.format(data_json=data_json)
     with open(MAP_FILE, "w", encoding="utf-8") as f:
@@ -123,7 +123,7 @@ def main() -> None:
     print(f"  Saved map -> {MAP_FILE}")
 
     print(f"\nDone! {len(gyms)} MP gyms, {len(osm_new)} OSM-only gyms, {len(dpt)} DPT programs.")
-    print("Open map.html in your browser to explore the data.")
+    print("Open index.html in your browser to explore the data.")
 
 
 if __name__ == "__main__":
