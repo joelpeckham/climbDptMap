@@ -9,7 +9,7 @@ MAP_TEMPLATE = """\
   <style>
     *, *::before, *::after {{ box-sizing: border-box; }}
     html, body {{ margin: 0; padding: 0; height: 100%; font-family: system-ui, sans-serif; }}
-    body {{ display: flex; }}
+    body {{ display: flex; flex-direction: row; }}
 
     #sidebar {{
       width: 270px;
@@ -22,7 +22,7 @@ MAP_TEMPLATE = """\
       flex-direction: column;
       gap: 14px;
     }}
-    #map {{ flex: 1; }}
+    #map {{ flex: 1; min-height: 0; min-width: 0; }}
 
     h1 {{ margin: 0; font-size: 1rem; font-weight: 700; line-height: 1.3; }}
 
@@ -75,6 +75,52 @@ MAP_TEMPLATE = """\
       border-top: 1px solid #ddd;
       padding-top: 10px;
       line-height: 1.6;
+    }}
+
+    /* ── Mobile layout: map on top, sidebar below ── */
+    @media (max-width: 640px) {{
+      body {{
+        flex-direction: column;
+        height: 100svh;
+      }}
+      #map {{
+        order: 1;
+        flex: 1 1 0;
+      }}
+      #sidebar {{
+        order: 2;
+        width: 100%;
+        min-width: unset;
+        max-height: 42vh;
+        border-right: none;
+        border-top: 1px solid #ddd;
+        padding: 10px 14px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        align-content: flex-start;
+        column-gap: 12px;
+        row-gap: 10px;
+        gap: unset;
+      }}
+      #sidebar h1 {{
+        width: 100%;
+        font-size: 0.9rem;
+        margin-bottom: 2px;
+      }}
+      .control-group {{
+        flex: 1 1 140px;
+      }}
+      #result-count {{
+        width: 100%;
+        order: 10;
+      }}
+      .legend {{
+        width: 100%;
+        order: 11;
+        border-top: none;
+        padding-top: 0;
+      }}
     }}
   </style>
 </head>
